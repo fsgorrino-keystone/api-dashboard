@@ -17,6 +17,7 @@ config.ini
 # Ignora i file generati dall'IDE
 .idea/
 
+# Ignora i file di database SQLite
 *.sqlite3
 
 # Ignora i file di installazione Python
