@@ -1,0 +1,24 @@
+# Ignora file di configurazione specifici dell'ambiente virtuale Python
+venv/
+*.pyc
+
+# Ignora i file generati durante la build
+__pycache__/
+*.pyc
+
+# Ignora i file di log e i file temporanei
+*.log
+*.swp
+*.swo
+
+# Ignora i file di configurazione locali
+config.ini
+
+# Ignora i file generati dall'IDE
+.idea/
+
+*.sqlite3
+
+# Ignora i file di installazione Python
+pip-log.txt
+pip-delete-this-directory.txt
