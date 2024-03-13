@@ -1,8 +1,10 @@
 import tornado.web
 import json
 from postgres import execute_query
+from decorators import check_uuid
 
 class UserOptionsHandler(tornado.web.RequestHandler):
+    @check_uuid
     def get(self, uid):
         # Ottenere uid dalla parte dinamica dell'URL
         # Esegui le operazioni desiderate con uid
@@ -14,6 +16,7 @@ class UserOptionsHandler(tornado.web.RequestHandler):
         response = {"data": results}
         self.write(json.dumps(response))
 
+    @check_uuid
     def delete(self,uid):
         # Ottenere uid dalla parte dinamica dell'URL
         # Esegui le operazioni desiderate con uid
@@ -26,18 +29,7 @@ class UserOptionsHandler(tornado.web.RequestHandler):
         self.write(json.dumps(response))
         self.finish()
 
-    def post(self,uid):
-        # Ottenere uid dalla parte dinamica dell'URL
-        # Esegui le operazioni desiderate con uid
-        query = """
-            select * from post_user_options(%s) 
-        """
-        params = (uid,)
-        results = execute_query(query, params)
-        response = {"data": results}
-        self.write(json.dumps(response))
-        self.finish()
-
+    @check_uuid
     def post(self,uid):
         # Ottenere uid dalla parte dinamica dell'URL
         # Esegui le operazioni desiderate con uid
@@ -90,6 +82,7 @@ class UserOptionsHandler(tornado.web.RequestHandler):
         self.write(json.dumps(response))
         self.finish()
 
+    @check_uuid
     def put(self,uid):
         # Ottenere uid dalla parte dinamica dell'URL
         # Esegui le operazioni desiderate con uid
