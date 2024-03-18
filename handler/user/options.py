@@ -12,9 +12,10 @@ class UserOptionsHandler(tornado.web.RequestHandler):
             select * from get_user_options(%s) 
         """
         params = (uid,)
-        results = execute_query(query, params)
-        response = {"data": results}
-        self.write(json.dumps(response))
+        status, response = execute_query(query, params)
+        self.set_status(status)
+        self.write(response)
+        self.finish()
 
     @check_uuid
     def delete(self,uid):
@@ -24,9 +25,9 @@ class UserOptionsHandler(tornado.web.RequestHandler):
             select * from delete_user_options(%s) 
         """
         params = (uid,)
-        results = execute_query(query, params)
-        response = {"data": results}
-        self.write(json.dumps(response))
+        status, response = execute_query(query, params)
+        self.set_status(status)
+        self.write(response)
         self.finish()
 
     @check_uuid
@@ -77,9 +78,9 @@ class UserOptionsHandler(tornado.web.RequestHandler):
             navbarfixed,
             absolute
         )
-        results = execute_query(query, params)
-        response = {"data": results}
-        self.write(json.dumps(response))
+        status, response = execute_query(query, params)
+        self.set_status(status)
+        self.write(response)
         self.finish()
 
     @check_uuid
@@ -130,7 +131,7 @@ class UserOptionsHandler(tornado.web.RequestHandler):
             navbarfixed,
             absolute
         )
-        results = execute_query(query, params)
-        response = {"data": results}
-        self.write(json.dumps(response))
+        status, response = execute_query(query, params)
+        self.set_status(status)
+        self.write(response)
         self.finish()

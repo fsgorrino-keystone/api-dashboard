@@ -10,7 +10,7 @@ class UserFormQuestionsHandler(tornado.web.RequestHandler):
             select * from get_user_form_questions(%s,%s) 
         """
         params = (uid,form_uid)
-        results = execute_query(query, params)
-        response = {"data": results}
-        self.write(json.dumps(response))
+        status, response = execute_query(query, params)
+        self.set_status(status)
+        self.write(response)
         self.finish()

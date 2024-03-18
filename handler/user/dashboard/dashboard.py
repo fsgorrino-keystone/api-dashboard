@@ -3,13 +3,13 @@ import json
 from postgres import execute_query
 from decorators import check_uuid
 
-class UserFormsHandler(tornado.web.RequestHandler):
+class UserDashboardHandler(tornado.web.RequestHandler):
     @check_uuid
-    def get(self, uid):
+    def delete(self, uid, dashboard_uid):
         query = """
-            select * from get_user_forms(%s) 
+            select * from delete_user_dashboard(%s,%s) 
         """
-        params = (uid,)
+        params = (uid,dashboard_uid)
         status, response = execute_query(query, params)
         self.set_status(status)
         self.write(response)
