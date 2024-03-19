@@ -8,6 +8,8 @@ from handler.user.questions import UserQuestionsHandler
 from handler.user.question.answers import UserQuestionAnswersHandler
 from handler.user.dashboards import UserDashboardsHandler
 from handler.user.dashboard.dashboard import UserDashboardHandler
+from handler.user.dashboard.default import UserDashboardDefaultHandler
+from handler.user.default import UserDefaultHandler
 
 def make_app():
     return tornado.web.Application([
@@ -19,6 +21,8 @@ def make_app():
         (r"/question/([^/]+)/answers", UserQuestionAnswersHandler),
         (r"/dashboards", UserDashboardsHandler),
         (r"/dashboard/([^/]+)", UserDashboardHandler),
+        (r"/dashboard/([^/]+)/default", UserDashboardDefaultHandler),
+        (r"/default", UserDefaultHandler),
     ], default_handler_class=NotFoundHandler)
 
 if __name__ == "__main__":
